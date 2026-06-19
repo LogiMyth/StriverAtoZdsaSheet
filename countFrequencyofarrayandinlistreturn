@@ -1,0 +1,20 @@
+class countFrequencyofarrayandinlistreturn {
+    // Change the method name to countFrequencies
+    public List<List<Integer>> countFrequencies(int[] nums) {
+        HashMap<Integer, Integer> freqMap = new HashMap<>();
+        
+        for (int num : nums) {
+            freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+        }
+
+        List<List<Integer>> result = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : freqMap.entrySet()) {
+            List<Integer> pair = new ArrayList<>();
+            pair.add(entry.getKey());
+            pair.add(entry.getValue());
+            result.add(pair);
+        }
+
+        return result;
+    }
+}
