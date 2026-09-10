@@ -11,6 +11,7 @@ class Solution {
             else{
                 st++;
                 pages = arr[i];
+                
             }
         }
 
@@ -40,3 +41,5 @@ class Solution {
         return ans;
     }
 }
+
+
