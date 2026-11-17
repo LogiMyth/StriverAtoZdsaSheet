@@ -1,36 +1,32 @@
 class Solution {
-    public List<List<Integer>> threeSum(int[] arr) {
-        int n = arr.length;
-        Arrays.sort(arr);
-        // Store final result
-        List<List<Integer>> ans = new ArrayList<>();
+    public List<List<Integer>> threeSum(int[] nums) {
+        ArrayList<List<Integer>> list = new ArrayList<>();
 
-        // First loop for first element
-        for (int i = 0; i < n; i++) {
-            // Skip duplicates for first element
-            if (i > 0 && arr[i] == arr[i - 1]) continue;
+        Arrays.sort(nums);
 
-            // Two pointers
-            int left = i + 1, right = n - 1;
+        for(int i = 0; i < nums.length; i++){
 
-            // Find pairs for current arr[i]
-            while (left < right) {
-                int sum = arr[i] + arr[left] + arr[right];
+            if(i > 0 && nums[i] ==  nums[i - 1]) continue;
 
-                if (sum == 0) {
-                    ans.add(Arrays.asList(arr[i], arr[left], arr[right]));
-                    left++;
-                    right--;
+            int j = i + 1; 
+            int k = nums.length - 1;
+            while (j < k){
+                int sum = nums[i] + nums[j] + nums[k];
 
-                    // Skip duplicates for left
-                    while (left < right && arr[left] == arr[left - 1]) left++;
-                    // Skip duplicates for right
-                    while (left < right && arr[right] == arr[right + 1]) right--;
+                if(sum < 0){
+                    j++;
                 }
-                else if (sum < 0) left++;
-                else right--;
+                else if (sum > 0){
+                    k--;
+                }
+                else{
+                    list.add(Arrays.asList(nums[i] , nums[j], nums[k]));
+                    j++; k--;
+                    while (j < k && nums[j] == nums[j - 1]) j++;
+                }
+
             }
         }
-        return ans;
+        return list;
     }
 }
